@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+	<div class="container-sm">
+		<form class="form-check p-md-5 mt-2" action="#" method="POST">
+			{% csrf_token %}
+			<h3>Login</h3>
+			{{ form | crispy }}
+			<input type="submit" name="login" class="btn btn-block btn-info">
+		</form>
+		<div class="container-sm">
+			{% if messages %}
+			{% for message in messages %}
+				<p class="alert alert-warning small">{{ message }}</p>
+			{% endfor %}
+		{%endif%}
+		</div>
+		<p>Don't have an account? <a href="{% url 'reg' %}">Register here</a></p>
+	</div>
+{% endblock %}

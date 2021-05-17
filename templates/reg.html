@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+	<div class="container-sm">
+		<form class="form-check p-sm-1 mt-2" action="#" method="POST">
+			{% csrf_token %}
+			<h3>Create Account</h3>
+			{{ register | crispy}}
+			<input type="submit" name="register" class="btn btn-block btn-info">
+
+		</form>
+		<p>already have an account? <a href="{% url 'login' %}">Login</a></p>
+	</div>
+{% endblock %}

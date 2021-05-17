@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<div class="container-sm mt-3">
+		{% if request.user.is_authenticated %}
+			<p class="alert-success"> hello {{ user.username }}</p>
+		{% endif %}
+
+		<p><a href="{% url 'logout' %}">logout</a></p>
+
+		<hr class="bg-light">
+
+		<div class="mt-2">
+			<form action="{% url 'home' %}" method="get">
+				{% csrf_token %}
+				<input class="btn btn-outline-primary bg-light" type="search" name="search", placeholder="Search people here ..."  required>
+				<input type="submit" name="search_button" id="qs" class="btn btn-sm btn-info">
+			</form>
+
+			<p>your results </p>
+		
+				{% for q in query %}
+					<p>{{ q.name }} {{ q.surname }}</p>
+				{% endfor %}
+
+		</div>
+
+		<hr class="bg-light">
+
+		<div class="container-md">
+			{% for p in people %}
+				<p>{{ p }}</p>
+			{% endfor %}
+		</div>
+
+	</div>
+{% endblock %}
